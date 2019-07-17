@@ -8,14 +8,14 @@ using System;
 
 namespace HackerNews
 {
-    class MainViewModel : ViewModel
+    public class MainViewModel : ViewModel
     {
-        readonly HackerNewsClient _client;
+        readonly IHackerNewsClient _client;
 
-        public MainViewModel()
+        public MainViewModel(IHackerNewsClient client)
         {
             MVVM.WebBrowserHelper.SetBrowserEmulationMode(11001);
-            _client = new HackerNewsClient();
+            _client = client;
             Items = new BindingList<Item>();
 
             LoadHeadlinesCommand = new RelayCommand(async () => await LoadItems(_client.GetTopItems), ()=> AllowLoadingItems);

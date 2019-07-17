@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace HackerNews.Models
 {
-    class Item
+    public class Item
     {
         public string Title { get; set; }
         public string Text { get; set; }

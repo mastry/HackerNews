@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace HackerNews
 {
-    class HackerNewsClient
+    class HackerNewsClient : IHackerNewsClient
     {
         const string BasePath = "https://hacker-news.firebaseio.com/v0";
 
@@ -18,7 +18,7 @@ namespace HackerNews
 
         public Task<int[]> GetIncomingItems()
         {
-            return  GetAsync<int[]>("newstories");
+            return GetAsync<int[]>("newstories");
         }
 
         public Task<int[]> GetPopularItems()
@@ -34,12 +34,12 @@ namespace HackerNews
         private async Task<T> GetAsync<T>(string path)
         {
             path = $"{BasePath}/{path}.json";
-            
+
             using (var client = new HttpClient())
             {
                 // Make the request
                 var response = await client.GetAsync(path);
-                response.EnsureSuccessStatusCode(); 
+                response.EnsureSuccessStatusCode();
 
                 // Convert the JSON response to the desired type
                 var jsonText = await response.Content.ReadAsStringAsync();

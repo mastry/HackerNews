@@ -3,7 +3,7 @@ using System.Windows.Input;
 
 namespace HackerNews.MVVM
 {
-    class RelayCommand : ICommand
+    public class RelayCommand : ICommand
     {
         readonly Action _execute;
         readonly Func<bool> _canExecute;
@@ -31,7 +31,7 @@ namespace HackerNews.MVVM
         }
     }
 
-    class RelayCommand<T> : ICommand
+    public class RelayCommand<T> : ICommand
     {
         readonly Action<T> _execute;
         readonly Predicate<T> _canExecute;
